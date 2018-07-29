@@ -6,11 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Collections.Generic;
+using AuthzProxy.Configuration;
+using Microsoft.Extensions.Options;
+using System;
 
 namespace AuthzProxy.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly AuthzProxyOptions _options;
+
+        public LoginModel(IOptionsSnapshot<AuthzProxyOptions> options)
+        {
+            _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
+        }
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -72,9 +82,12 @@ namespace AuthzProxy.Pages.Account
             return Page();
         }
 
-        private bool AuthenticateUser(string email, string password)
+        private bool AuthenticateUser(string username, string password)
         {
-            return true;
+            if (_options.Password?.Trim().Length == 0)
+                return false;
+
+            return _options.User == username && _options.Password == password;
         }
     }
 }

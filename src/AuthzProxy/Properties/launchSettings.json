@@ -1,18 +1,12 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:54838",
-      "sslPort": 0
-    }
-  },
   "profiles": {
     "AuthzProxy": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "AuthzProxy__TargetUrl": "https://share.peter-doering.com",
+        "AuthzProxy__User": "bob",
+        "AuthzProxy__Password": "secret",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:5000"
