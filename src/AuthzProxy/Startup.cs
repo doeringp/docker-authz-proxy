@@ -1,4 +1,3 @@
-using AuthzProxy.Configuration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -46,6 +45,8 @@ namespace AuthzProxy
                     c => c.RequireAuthenticatedUser());
             });
 
+            services.AddTransient<AuthorizationMiddleware>();
+
             services
                 .AddMvc()
                 .AddRazorPagesOptions(options =>
@@ -56,8 +57,7 @@ namespace AuthzProxy
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-            IAuthorizationService authorizationService, IOptions<AuthzProxyOptions> settings)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IOptions<AuthzProxyOptions> settings)
         {
             if (env.IsDevelopment())
             {
@@ -70,17 +70,7 @@ namespace AuthzProxy
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
-
-            app.Use(async (context, next) =>
-            {
-                var result = await authorizationService.AuthorizeAsync(
-                    context.User, "RequireAuthenticatedUser");
-
-                if (result.Succeeded)
-                    await next.Invoke();
-                else
-                    await context.ChallengeAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            });
+            app.UseMiddleware<AuthorizationMiddleware>();
 
             string targetUrl = settings.Value?.TargetUrl;
             if (targetUrl == null)

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Collections.Generic;
-using AuthzProxy.Configuration;
 using Microsoft.Extensions.Options;
 using System;
 

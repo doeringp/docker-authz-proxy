@@ -1,4 +1,7 @@
-﻿namespace AuthzProxy.Configuration
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace AuthzProxy
 {
     public class AuthzProxyOptions
     {
@@ -16,5 +19,12 @@
         /// Password to log in.
         /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// List of Regular Expressions matching the URL path.
+        /// Paths which match one of these Regular Expressions will
+        /// be permitted for anonymous access.
+        /// </summary>
+        public string Whitelist { get; set; }
     }
 }
