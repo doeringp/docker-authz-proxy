@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Collections.Generic;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace AuthzProxy.Pages.Account
 {
@@ -65,7 +65,10 @@ namespace AuthzProxy.Pages.Account
                     return Page();
                 }
 
-                var claims = new List<Claim>();
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, _options.User)
+                };
 
                 var claimsIdentity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
