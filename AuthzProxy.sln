@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthzProxy", "AuthzProxy\AuthzProxy.csproj", "{6C5183BB-E24D-447B-B37F-9B04956AC777}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthzProxy", "src\AuthzProxy\AuthzProxy.csproj", "{6C5183BB-E24D-447B-B37F-9B04956AC777}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2839CF7D-85BE-4E35-8016-C5DE985B077E}"
 EndProject

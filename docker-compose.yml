@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY}authzproxy
     build:
       context: .
-      dockerfile: AuthzProxy/Dockerfile
+      dockerfile: src/AuthzProxy/Dockerfile
