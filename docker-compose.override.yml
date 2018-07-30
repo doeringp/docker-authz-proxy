@@ -6,3 +6,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+    environment:
+      - "AuthzProxy__TargetUrl=https://share.peter-doering.com"
+      - "AuthzProxy__User=bob"
+      - "AuthzProxy__Password=secret"
+      - "AuthzProxy__Whitelist=^/[a-zA-Z0-9]{12}(\\.json)?$$,^/assets/.+,^/app/.+,^/files/.+"
