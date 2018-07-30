@@ -7,11 +7,11 @@ I've originally had this idea when I was using a filesharing webapp.
 The webapp had no authentication and I didn't want everyone to upload files to my server.
 So I've developed this proxy container as a reverse proxy to handle authentication and authorization.
 
-* Reverse proxy for any destination URL.
-* Customizable login form.
+* Reverse proxy for any destination URL
+* Login form
 * Simple configuration over environment variables
 * One username and password
-* URL path whitelisting by Regular Expressions.
+* URL path whitelisting by Regular Expressions
 
 Image on DockerHub: [doeringp/authz-proxy](https://hub.docker.com/r/doeringp/authz-proxy)
 
