@@ -3,6 +3,4 @@ version: '3.4'
 services:
   authzproxy:
     image: ${DOCKER_REGISTRY}/authzproxy
-    build:
-      context: .
-      dockerfile: src/AuthzProxy/Dockerfile
+    build: .
