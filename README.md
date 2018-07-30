@@ -36,3 +36,8 @@ docker run -dt -p 80:80 \
     -e AuthzProxy:Password=secret \
     -e AuthzProxy:Whitelist='/admin' \
     doeringp/authz-proxy:latest
+
+### Data Protection Keys
+The application is using ASP.NET Core Data Protection for encrypting the session cookie.
+It generates symmetric keys on startup.
+I recommmend to persist the keys on a volume, if you don't want to loose the sessions after each container restart.
