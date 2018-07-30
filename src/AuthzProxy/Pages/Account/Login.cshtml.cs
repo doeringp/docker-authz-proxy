@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ namespace AuthzProxy.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly AuthzProxyOptions _options;
+        private readonly ILogger _logger;
 
-        public LoginModel(IOptionsSnapshot<AuthzProxyOptions> options)
+        public LoginModel(IOptionsSnapshot<AuthzProxyOptions> options, ILogger<LoginModel> logger)
         {
             _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
+            _logger = logger;
         }
 
         [BindProperty]
@@ -86,8 +89,13 @@ namespace AuthzProxy.Pages.Account
 
         private bool AuthenticateUser(string username, string password)
         {
+            username = username.Trim();
             if (_options.Password?.Trim().Length == 0)
+            {
+                _logger.LogWarning(
+                    "No password set. Please set the environment variable AuthzProxy:Password.");
                 return false;
+            }
 
             return _options.User == username && _options.Password == password;
         }
