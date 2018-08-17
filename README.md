@@ -3,6 +3,8 @@
 This Docker container is a reverse proxy for other containers to enable forms authentication. \
 Authorization can be done by using Regular Expressions to filter the URL path.
 
+![Login Page](https://user-images.githubusercontent.com/20394732/44262118-2ba6c800-a21a-11e8-94ce-ecfca2c644c4.png)
+
 I've originally had this idea when I was using a filesharing webapp.
 The webapp had no authentication and I didn't want everyone to upload files to my server.
 So I've developed this proxy container as a reverse proxy to handle authentication and authorization.
